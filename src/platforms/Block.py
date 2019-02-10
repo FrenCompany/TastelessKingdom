@@ -59,15 +59,12 @@ class Platform(Block):
     def __init__(self, width, height, x, y, color=PLATFORM_COLOR):
         super().__init__(width, height, x, y, color)
 
-    # choque con el lado izquierdo, no hace nada
     def collide_left(self, moving_sprite):
         return False
 
-    # choque con el lado derecho, no hace nada
     def collide_right(self, moving_sprite):
         return False
 
-    # choque con el lado inferior, no hace nada
     def collide_bottom(self, moving_sprite):
         return False
 
@@ -112,3 +109,22 @@ class Door(Block):
         if super().collide_top(moving_sprite):
             self.enter_door()
         return
+
+
+class Backdoor(Door):
+
+    def __init__(self, driver, width, height, x, y, color=DOOR_COLOR,
+                 next_level: str = '', entering_pos: Tuple[int, int] = (0, 0)):
+        super().__init__(driver, width, height, x, y, color, next_level, entering_pos)
+
+    def collide_left(self, moving_sprite):
+        return False
+
+    def collide_right(self, moving_sprite):
+        return False
+
+    def collide_bottom(self, moving_sprite):
+        return False
+
+    def collide_top(self, moving_sprite):
+        return False

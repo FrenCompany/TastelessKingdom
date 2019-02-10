@@ -33,6 +33,12 @@
     }
   ],
 
+  "backdoors": [
+    {
+      "width": 50, "height": 70, "x": 400, "y": 500, "next_level": "level2", "entering_pos": [405, 530]
+    }
+  ],
+
   "cannons": [
   ],
 

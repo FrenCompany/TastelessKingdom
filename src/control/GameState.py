@@ -167,7 +167,7 @@ class InGame(GameState):
         return
 
     def press_primary(self, player: Player):
-        # TODO entrar en puerta?
+        self.level.enter_backdoor(player)
         return
 
 
