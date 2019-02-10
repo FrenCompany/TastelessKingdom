@@ -1,0 +1,40 @@
+{
+  "duration": 30,
+
+  "blocks": [
+    {
+      "width": 30, "height": 500, "x": 0, "y": 0
+    }, {
+      "width": 30, "height": 600, "x": 770, "y": 0
+    }, {
+      "width": 800, "height": 30, "x": 0, "y": 0
+    }, {
+      "width": 900, "height": 30, "x": -50, "y": 570
+    }
+  ],
+
+  "platforms": [
+    {
+      "width": 200, "height": 5, "x": 115, "y": 300
+    }, {
+      "width": 200, "height": 5, "x": 485, "y": 300
+    }, {
+      "width": 300, "height": 20, "x": 250, "y": 435
+    }
+  ],
+
+  "doors": [
+    {
+      "width": 10, "height": 70, "x": -40, "y": 500, "next_level": "level1", "entering_pos": [790, 530]
+    }
+  ],
+
+  "cannons": [
+  ],
+
+  "coins": [
+    {
+      "x": 50, "y": 100
+    }
+  ]
+}

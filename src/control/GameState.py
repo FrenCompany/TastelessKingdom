@@ -127,7 +127,7 @@ class InGame(GameState):
 
         self.level: Level = level
         self.char = self.driver.player.char
-        self.char.move_to(100, 100)
+        self.char.move_to(380, 200)
         self.char.vy = 0
 
     def tick(self, events):
@@ -167,7 +167,7 @@ class InGame(GameState):
         return
 
     def press_primary(self, player: Player):
-        player.char.jump()
+        # TODO entrar en puerta?
         return
 
 
