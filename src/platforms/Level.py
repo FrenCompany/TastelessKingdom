@@ -2,7 +2,8 @@ import json
 import pygame
 
 from settings.GUI import BACKGROUND_COLOR
-from src.platforms.Block import Block, Platform, Door, Backdoor
+from src.platforms.Block import Block, Platform, Door
+from src.platforms.Interactable import Backdoor
 from src.platforms.Cannon import Cannon
 from src.platforms.Collectible import Collectible
 from src.platforms.Group import CustomGroup
