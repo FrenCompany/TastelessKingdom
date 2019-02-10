@@ -85,8 +85,8 @@ class Door(Block):
         self.entering_pos = entering_pos
 
     def enter_room(self, player):
-        from src.platforms.Level import load_level
-        self.driver.state.level = load_level(f'static/maps/{self.next_level}.json', self.driver)
+        from src.platforms.Room import load_room
+        self.driver.state.level = load_room(f'static/maps/{self.next_level}.json', self.driver)
         player.char.move_to(*self.entering_pos)
         return
 

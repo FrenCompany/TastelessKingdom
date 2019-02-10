@@ -3,13 +3,13 @@ import pygame
 
 from settings.GUI import BACKGROUND_COLOR
 from src.platforms.Block import Block, Platform, Door
-from src.platforms.Interactable import Backdoor
+from src.platforms.Interactable import Backdoor, InventoryItem
 from src.platforms.Cannon import Cannon
 from src.platforms.Collectible import Collectible
 from src.platforms.Group import CustomGroup
 
 
-class Level:
+class Room:
 
     def __init__(self, blocks=CustomGroup(), platforms=CustomGroup(), doors=CustomGroup(),
                  cannons=CustomGroup(), collectibles=CustomGroup(), backdoors=CustomGroup()):
@@ -17,7 +17,17 @@ class Level:
         self.collectibles = collectibles
         self.backdoors = backdoors
 
-        self.interactables = [collectibles, backdoors]
+        inventory = {
+            1: 2,
+            2: 4,
+            3: 1,
+        }
+        self.items = CustomGroup(
+            InventoryItem(200, 500, inventory, 1),
+            InventoryItem(300, 500, inventory, 2),
+            InventoryItem(400, 500, inventory, 3))
+
+        self.interactables = [backdoors, self.items]
 
         self.doors = doors
         self.blocks = blocks
@@ -53,6 +63,8 @@ class Level:
         self.doors.draw(screen)
         self.backdoors.draw(screen)
 
+        self.items.draw(screen)
+
         self.cannons.draw(screen)
 
         for objective in self.collectibles:
@@ -73,12 +85,12 @@ class Level:
         for interactable in self.interactables:
             collisions = pygame.sprite.spritecollide(player.char, interactable, dokill=False)
             if len(collisions) > 0:
-                collisions[0].secondary_action()
+                collisions[0].secondary_action(player)
                 return
         return
 
 
-def load_level(level_json, driver):
+def load_room(level_json, driver):
     with open(level_json) as f:
         level = json.load(f)
 
@@ -106,5 +118,5 @@ def load_level(level_json, driver):
     for collectible in level["collectibles"]:
         collectibles.add(Collectible(**collectible))
 
-    return Level(blocks=blocks, platforms=platforms, doors=doors, backdoors=backdoors, collectibles=collectibles,
-                 cannons=cannons)
+    return Room(blocks=blocks, platforms=platforms, doors=doors, backdoors=backdoors, collectibles=collectibles,
+                cannons=cannons)

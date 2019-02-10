@@ -6,10 +6,10 @@ from src.utils import path
 
 class Collectible(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, size=COLLECTIBLE_SIZE):
+    def __init__(self, x, y, size=COLLECTIBLE_SIZE, img='fruta frutilla'):
         super().__init__()
-        self.image = pygame.image.load(path('static/img/FrenCoin.png'))
-        self.image = pygame.transform.smoothscale(self.image, size)
+        self.image = pygame.image.load(path(f'static/img/ingredients/{img}.png'))
+        self.image = pygame.transform.scale(self.image, size)
 
         self.rect = self.image.get_rect().move((x, y))
 

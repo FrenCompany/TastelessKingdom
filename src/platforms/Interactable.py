@@ -3,6 +3,8 @@ from abc import ABC, abstractmethod
 
 from settings.GUI import DOOR_COLOR
 from src.platforms.Block import Door
+from src.platforms.Collectible import Collectible
+from src.platforms.Text import Text
 
 
 class Interactable(ABC):
@@ -40,3 +42,25 @@ class Backdoor(Door, Interactable):
 
     def collide_top(self, moving_sprite):
         return False
+
+
+class InventoryItem(Collectible):
+
+    def __init__(self, x, y, inventory, itemenum):
+        super().__init__(x, y)
+        self.inventory = inventory
+        self.itemenum = itemenum
+
+    def draw(self, screen):
+        super().draw(screen)
+        pos = self.rect.move(self.rect.width / 2, -10)
+        Text(str(self.inventory[self.itemenum]), x=pos[0], y=pos[1], size=15, center=True).draw(screen)
+        return
+
+    def primary_action(self, player):
+        self.inventory[self.itemenum] += 1
+        return
+
+    def secondary_action(self, player):
+        self.inventory[self.itemenum] -= 1
+        return

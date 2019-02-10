@@ -2,7 +2,7 @@ from pygame.locals import *
 
 from settings.GUI import TITLE_COLOR, SUBTITLE_COLOR, MENU_BACKGROUND
 from src.control.Player import Player
-from src.platforms.Level import Level
+from src.platforms.Room import Room
 from src.menu.Menu import Menu
 from src.menu.MenuHandler import *
 from src.menu.MenuItem import Button, MenuText
@@ -122,10 +122,10 @@ class InMainMenu(MenuState):
 
 
 class InGame(GameState):
-    def __init__(self, driver, level: Level):
+    def __init__(self, driver, level: Room):
         super().__init__(driver)
 
-        self.level: Level = level
+        self.level: Room = level
         self.char = self.driver.player.char
         self.char.move_to(380, 200)
         self.char.vy = 0
