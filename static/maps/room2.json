@@ -1,7 +1,7 @@
 {
   "blocks": [
     {
-      "width": 30, "height": 500, "x": 0, "y": 0
+      "width": 30, "height": 470, "x": 0, "y": 0
     }, {
       "width": 30, "height": 600, "x": 770, "y": 0
     }, {
@@ -23,13 +23,13 @@
 
   "doors": [
     {
-      "width": 10, "height": 70, "x": -40, "y": 500, "next_level": "room1", "entering_pos": [790, 530]
+      "width": 10, "height": 70, "x": -40, "y": 500, "next_level": "room1", "entering_pos": [790, 490]
     }
   ],
 
   "backdoors": [
     {
-      "width": 50, "height": 70, "x": 375, "y": 500, "next_level": "storage1", "entering_pos": [380, 530]
+      "width": 80, "height": 100, "x": 360, "y": 470, "next_level": "storage1", "entering_pos": [368, 490]
     }
   ],
 

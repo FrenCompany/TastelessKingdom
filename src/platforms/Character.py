@@ -2,29 +2,26 @@ from typing import Union
 
 import pygame
 
-from settings.GUI import CHAR_SIZE
 from settings.Game import CHAR_GRAVITY, CHAR_SPEED, CHAR_JUMPSPEED, CHAR_JUMPTRIES
 from src.platforms.Cannon import Bullet
 from src.platforms.Coin import Coin
 from src.platforms.Sound import play_jump
+from src.platforms.AnimatedSprite import AnimatedCharacter
 
 
 class Character(pygame.sprite.Sprite):
     LEFT = 0
     RIGHT = 1
 
-    def __init__(self, img, x=0, y=0, g=CHAR_GRAVITY, jumpspeed=CHAR_JUMPSPEED):
+    def __init__(self, char: str, x=0, y=0, g=CHAR_GRAVITY, jumpspeed=CHAR_JUMPSPEED):
         super().__init__()
 
         # imagen a mostrar cada vez que se llama draw()
-        self.image = pygame.image.load(img)
-        self.image = pygame.transform.scale(self.image, (CHAR_SIZE, CHAR_SIZE))
         self.direction = self.LEFT
+        self.sprite = AnimatedCharacter(char)
 
         # posición
-        self.width = CHAR_SIZE
-        self.height = CHAR_SIZE
-        self.rect = self.image.get_rect().move(x, y)
+        self.rect = self.sprite.get_image().get_rect().move(x, y)
         self.old_rect = self.rect.copy()
 
         # saltos y gravedad
@@ -81,8 +78,9 @@ class Character(pygame.sprite.Sprite):
     # ---------------- dibujar ---------------
 
     def draw(self, screen):
-        image = self.image
-        if self.direction == self.RIGHT:
+        image = self.sprite.get_image(moving=self.old_rect != self.rect, jumping=not self.standing)
+
+        if self.direction == self.LEFT:
             image = pygame.transform.flip(image, True, False)
 
         screen.blit(image, self.rect)

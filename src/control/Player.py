@@ -1,13 +1,12 @@
 from pygame.locals import *
 
 from src.platforms.Character import Character
-from src.utils import path
 
 
 class Player:
-    def __init__(self, driver, img: str = 'Anouk'):
+    def __init__(self, driver, char: str = 'bunny'):
         self.driver = driver
-        self.char = Character(path(f'static/img/{img}.png'), x=400, y=300)
+        self.char = Character(char, x=400, y=300)
 
     def actions(self, events, pressed):
         # controles presionados

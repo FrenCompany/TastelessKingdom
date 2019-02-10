@@ -23,7 +23,7 @@
 
   "backdoors": [
     {
-      "width": 50, "height": 70, "x": 375, "y": 500, "next_level": "room2", "entering_pos": [380, 530]
+      "width": 80, "height": 100, "x": 360, "y": 470, "next_level": "room2", "entering_pos": [368, 490]
     }
   ],
 
