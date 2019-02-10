@@ -78,12 +78,12 @@ class Platform(Block):
 class AutomaticDoor(Block, Door):
 
     def __init__(self, driver, width, height, x, y, color=DOOR_COLOR,
-                 next_level: str = '', entering_pos: Tuple[int, int] = (0, 0)):
+                 next_room: str = '', entering_pos: Tuple[int, int] = (0, 0)):
         Block.__init__(self, width, height, x, y, color)
-        Door.__init__(self, driver, next_level, entering_pos)
+        Door.__init__(self, driver, next_room, entering_pos)
 
         self.driver = driver
-        self.next_level = next_level
+        self.next_level = next_room
         self.entering_pos = entering_pos
 
     def collide_left(self, moving_sprite):

@@ -23,8 +23,8 @@ class Interactable(ABC):
 class Backdoor(Door, Interactable, pygame.sprite.Sprite):
 
     def __init__(self, driver, width, height, x, y, color=DOOR_COLOR,
-                 next_level: str = '', entering_pos: Tuple[int, int] = (0, 0)):
-        Door.__init__(self, driver, next_level, entering_pos)
+                 next_room: str = '', entering_pos: Tuple[int, int] = (0, 0)):
+        Door.__init__(self, driver, next_room, entering_pos)
         pygame.sprite.Sprite.__init__(self)
 
         # imagen

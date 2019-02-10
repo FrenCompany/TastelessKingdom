@@ -1,19 +1,22 @@
 import json
 import pygame
 
-from settings.GUI import BACKGROUND_COLOR
+from settings.GUI import SCREEN_HEIGHT, SCREEN_WIDTH
 from src.platforms.Block import Block, Platform, AutomaticDoor
 from src.platforms.Interactable import Backdoor
 from src.platforms.Cannon import Cannon
 from src.platforms.Collectible import Collectible
 from src.platforms.Group import CustomGroup
 
+from src.utils import path
+
 
 class Room:
 
     def __init__(self, name: str = '', blocks=CustomGroup(), platforms=CustomGroup(), doors=CustomGroup(),
-                 cannons=CustomGroup(), collectibles=CustomGroup(), backdoors=CustomGroup()):
+                 cannons=CustomGroup(), collectibles=CustomGroup(), backdoors=CustomGroup(), background: str = ""):
         self.name = name
+        self.background = pygame.transform.scale(pygame.image.load(path(background)), (SCREEN_WIDTH, SCREEN_HEIGHT))
 
         self.backdoors = backdoors
         self.interactables = [backdoors]
@@ -47,14 +50,12 @@ class Room:
         return
 
     def draw(self, screen, char):
-        screen.fill(BACKGROUND_COLOR)
+        screen.blit(self.background, (0, 0))
 
         self.blocks.draw(screen)
         self.platforms.draw(screen)
         self.doors.draw(screen)
         self.backdoors.draw(screen)
-
-        # self.items.draw(screen)
 
         self.cannons.draw(screen)
 
@@ -112,4 +113,4 @@ def load_room(level_name, driver):
         collectibles.add(Collectible(**collectible))
 
     return Room(blocks=blocks, platforms=platforms, doors=doors, backdoors=backdoors, collectibles=collectibles,
-                cannons=cannons, name=level_name)
+                cannons=cannons, name=level_name, background=level["background"])

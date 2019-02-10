@@ -1,13 +1,13 @@
 {
+  "background": "static/img/levels/backgrounds/Level 2 Background.png",
+
   "blocks": [
     {
-      "width": 30, "height": 470, "x": 0, "y": 0
+      "width": 0, "height": 600, "x": 800, "y": 0
     }, {
-      "width": 30, "height": 600, "x": 770, "y": 0
+      "width": 800, "height": 0, "x": 0, "y": 0
     }, {
-      "width": 800, "height": 30, "x": 0, "y": 0
-    }, {
-      "width": 900, "height": 30, "x": -50, "y": 570
+      "width": 1000, "height": 0, "x": -100, "y": 570
     }
   ],
 
@@ -23,13 +23,13 @@
 
   "doors": [
     {
-      "width": 0, "height": 600, "x": -60, "y": 0, "next_level": "room1", "entering_pos": [790, 490]
+      "width": 0, "height": 600, "x": -60, "y": 0, "next_room": "room1", "entering_pos": [790, 490]
     }
   ],
 
   "backdoors": [
     {
-      "width": 80, "height": 100, "x": 360, "y": 470, "next_level": "storage", "entering_pos": [368, 490]
+      "width": 80, "height": 100, "x": 360, "y": 470, "next_room": "storage", "entering_pos": [368, 490]
     }
   ],
 

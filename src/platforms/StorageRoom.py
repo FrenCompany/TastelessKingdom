@@ -8,15 +8,12 @@ from src.platforms.Room import Room
 
 
 class StorageRoom(Room):
-    def __init__(self, blocks=CustomGroup(), platforms=CustomGroup(), backdoors=CustomGroup(), items=CustomGroup()):
-        super().__init__()
-        self.backdoors = backdoors
+    def __init__(self, blocks=CustomGroup(), platforms=CustomGroup(), backdoors=CustomGroup(), items=CustomGroup(),
+                 background: str = ""):
+        super().__init__(blocks=blocks, platforms=platforms, backdoors=backdoors, background=background)
         self.items = items
 
         self.interactables = [backdoors, items]
-
-        self.blocks = blocks
-        self.platforms = platforms
 
     def update(self):
         return
@@ -27,7 +24,7 @@ class StorageRoom(Room):
         return
 
     def draw(self, screen, char):
-        screen.fill(BACKGROUND_COLOR)
+        screen.blit(self.background, (0, 0))
 
         self.blocks.draw(screen)
         self.platforms.draw(screen)
@@ -53,7 +50,7 @@ def load_storage_room(prev_level, driver):
         platforms.add(Platform(**platform))
         item_spaces.append(platform)
 
-    backdoors = CustomGroup(Backdoor(driver, **level["backdoor"], next_level=prev_level))
+    backdoors = CustomGroup(Backdoor(driver, **level["backdoor"], next_room=prev_level))
 
     items = CustomGroup()
 
@@ -68,4 +65,5 @@ def load_storage_room(prev_level, driver):
         else:
             place = item_spaces.pop(0)
 
-    return StorageRoom(blocks=blocks, platforms=platforms, backdoors=backdoors, items=items)
+    return StorageRoom(blocks=blocks, platforms=platforms, backdoors=backdoors, items=items,
+                       background=level["background"])
