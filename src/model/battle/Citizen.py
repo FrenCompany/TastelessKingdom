@@ -1,9 +1,11 @@
 from .Dish import Dish
+from .Buff.Buff import Buff
+from typing import List
 from Lib.copy import deepcopy
 
 
 class Citizen:
-    def __init__(self, time, loose_hp_every, multipliers, reactions, buffs=list()):
+    def __init__(self, time, loose_hp_every, multipliers, reactions, buffs: List[Buff]=list()):
         self.hp = 0
         self.time = time
         self.loose_hp_every = loose_hp_every
@@ -24,6 +26,7 @@ class Citizen:
         # get buffs
         for buff in dish.powers:
             self.buffs.append(buff)
+            buff.set_parent(self)
 
         reactions_copy = deepcopy(self.reactions)
         # react
@@ -32,3 +35,6 @@ class Citizen:
 
         for reaction in reactions_copy:
             reaction.act(dish.chef)
+
+    def remove_buff(self, buff: Buff):
+        self.buffs.remove(buff)
