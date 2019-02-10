@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class Buff(ABC):
     def __init__(self, cooldown):
         self.cooldown = cooldown

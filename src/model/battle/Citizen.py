@@ -1,4 +1,6 @@
+from .Dish import Dish
 from Lib.copy import deepcopy
+
 
 class Citizen:
     def __init__(self, time, loose_hp_every, multipliers, reactions, buffs=list()):
@@ -9,7 +11,7 @@ class Citizen:
         self.reactions = reactions
         self.buffs = buffs
 
-    def eat(self, dish):
+    def eat(self, dish: Dish):
         multipliers_copy = deepcopy(self.multipliers)
 
         # buff multipliers
@@ -23,4 +25,10 @@ class Citizen:
         for buff in dish.powers:
             self.buffs.append(buff)
 
+        reactions_copy = deepcopy(self.reactions)
         # react
+        for buff in self.buffs:
+            buff.buff_reaction(reactions_copy)
+
+        for reaction in reactions_copy:
+            reaction.act(dish.chef)
