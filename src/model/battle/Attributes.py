@@ -2,8 +2,8 @@ from enum import Enum, auto
 
 
 class Attributes(Enum):
-    ITALIAN = "ITA"
-    DESSERT = "DES"
+    ITALIAN = auto()
+    DESSERT = auto()
     HEALTHY = auto()
     FAST_FOOD = auto()
     TRENDY = auto()

@@ -56,7 +56,6 @@ def load_storage_room(prev_level, driver):
     backdoors = CustomGroup(Backdoor(driver, **level["backdoor"], next_level=prev_level))
 
     items = CustomGroup()
-    print(item_spaces)
 
     place = item_spaces.pop(0)
     for ingredient in driver.player.storage.items:

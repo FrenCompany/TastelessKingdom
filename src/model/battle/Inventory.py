@@ -1,3 +1,6 @@
+from src.model.Ingredients import Ingredients
+
+
 class Inventory:
     # takes the player's basic inventory (a dictionary with the enum values as keys,
     # the quantity and regeneration of each ingredient) and creates the inventory needed
@@ -5,10 +8,11 @@ class Inventory:
 
     def __init__(self, player_inventory):
         self.inventory = {}
-        for i in player_inventory:
-            item = player_inventory[i]
+        for key in player_inventory:
+            amount = player_inventory[key]
+            regen = Ingredients.get_regen(key)
             # inventory: max, regeneration ratio, available
-            self.inventory[i] = [item[0], item[1], item[0]]
+            self.inventory[key] = [amount, regen, amount]
 
     # regenerates ingredients according to their regeneration ratio
     def regenerate_ingredients(self):
@@ -20,12 +24,15 @@ class Inventory:
                 item[2] += item[1]
 
     # lowers the availability of the item by 1
-    def use_item(self, item):
-        self.inventory[item][2] -= 1
+    def use_item(self, item, amount):
+        self.inventory[item][2] -= amount
 
     # returns true if chef has enough of the required ingredients
     def can_cook(self, recipe):
-        for i in recipe.ingredient_list:
-            if i not in self.inventory or recipe.ingredient_list[i] >= self.inventory[i][2]:
+        for key in recipe.ingredient_list:
+            if key not in self.inventory or recipe.ingredient_list[key] >= self.inventory[key][2]:
                 return False
         return True
+
+    def get_amount(self, ing_key):
+        return self.inventory[ing_key][2]

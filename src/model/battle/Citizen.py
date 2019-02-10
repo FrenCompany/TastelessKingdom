@@ -19,7 +19,18 @@ class Citizen:
     def is_saved(self):
         return self.hp >= self.max_hp
 
+    def is_alive(self):
+        return self.time > 0
+
+    def tick(self):
+        self.time -= 1
+
     def eat(self, dish: Dish):
+        # get buffs
+        for buff in dish.powers:
+            self.buffs.append(buff)
+            buff.set_parent(self)
+
         multipliers_copy = deepcopy(self.multipliers)
 
         # buff multipliers
@@ -29,18 +40,19 @@ class Citizen:
         # get happiness
         self.hp += multipliers_copy.eat(dish)
 
-        # get buffs
-        for buff in dish.powers:
-            self.buffs.append(buff)
-            buff.set_parent(self)
-
+    def react(self, chef):
         reactions_copy = deepcopy(self.reactions)
-        # react
+        # buff reactions
         for buff in self.buffs:
             buff.buff_reaction(reactions_copy)
 
+        # react
         for reaction in reactions_copy:
-            reaction.act(dish.chef)
+            reaction.act(chef)
 
     def remove_buff(self, buff: Buff):
         self.buffs.remove(buff)
+
+    def tick_buffs(self):
+        for buff in self.buffs:
+            buff.tick()
