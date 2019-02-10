@@ -1,5 +1,5 @@
 from src.model.battle.BattleState.BattleState import BattleState
-from src.model.battle.BattleState.ChefTurn import ChefTurn
+#from src.model.battle.BattleState.ChefTurn import ChefTurn
 
 
 class SystemTurn(BattleState):

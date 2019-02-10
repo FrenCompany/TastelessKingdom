@@ -1,10 +1,10 @@
 from src.model.battle.BattleState.BattleState import BattleState
-from src.model.battle.BattleDriver import BattleDriver
+#from src.model.battle.BattleDriver import BattleDriver
 from src.model.battle.BattleState.SystemTurn import SystemTurn
 
 
 class CitizenTurn(BattleState):
-    def __init__(self, driver: BattleDriver):
+    def __init__(self, driver):
         super(CitizenTurn, self).__init__(driver)
         self.react()
 

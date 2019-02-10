@@ -1,10 +1,9 @@
-from src.model.battle.BattleDriver import BattleDriver
 from src.model.battle.BattleState.BattleState import BattleState
 from src.model.battle.BattleState.CitizenTurn import CitizenTurn
 
 
 class ChefTurn(BattleState):
-    def __init__(self, driver: BattleDriver):
+    def __init__(self, driver):
         super(ChefTurn, self).__init__(driver)
         self.recipe_index = 0
 
