@@ -1,0 +1,26 @@
+{
+  "blocks": [
+    {
+      "width": 100, "height": 600, "x": 0, "y": 0
+    }, {
+      "width": 100, "height": 600, "x": 700, "y": 0
+    }, {
+      "width": 800, "height": 170, "x": 0, "y": 0
+    }, {
+      "width": 900, "height": 30, "x": -50, "y": 570
+    }
+  ],
+
+  "platforms": [
+    {
+      "width": 400, "height": 5, "x": 200, "y": 300
+    }, {
+      "width": 400, "height": 5, "x": 200, "y": 435
+    }
+  ],
+
+  "backdoor": {
+    "width": 80, "height": 100, "x": 360, "y": 470, "entering_pos": [368, 490]
+  }
+
+}

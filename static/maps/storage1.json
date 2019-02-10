@@ -31,25 +31,25 @@
 
   "collectibles": [
     {
-      "x": 225, "y": 250
+      "x": 225, "y": 250, "ingredient": "TOMATO"
     }, {
-      "x": 300, "y": 250
+      "x": 300, "y": 250, "ingredient": "TOMATO"
     }, {
-      "x": 375, "y": 250
+      "x": 375, "y": 250, "ingredient": "TOMATO"
     }, {
-      "x": 450, "y": 250
+      "x": 450, "y": 250, "ingredient": "STRAWBERRY"
     }, {
-      "x": 525, "y": 250
+      "x": 525, "y": 250, "ingredient": "STRAWBERRY"
     }, {
-      "x": 225, "y": 385
+      "x": 225, "y": 385, "ingredient": "LETTUCE"
     }, {
-      "x": 300, "y": 385
+      "x": 300, "y": 385, "ingredient": "LETTUCE"
     }, {
-      "x": 375, "y": 385
+      "x": 375, "y": 385, "ingredient": "LETTUCE"
     }, {
-      "x": 450, "y": 385
+      "x": 450, "y": 385, "ingredient": "LETTUCE"
     }, {
-      "x": 525, "y": 385
+      "x": 525, "y": 385, "ingredient": "LETTUCE"
     }
   ]
 }

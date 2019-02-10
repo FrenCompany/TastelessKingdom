@@ -96,7 +96,7 @@ class Driver:
         return
 
     def start_game(self):
-        level = load_room(path('static/maps/room1.json'), self)
+        level = load_room(path('room1'), self)
         self.set_state(InGame(self, level))
         return
 

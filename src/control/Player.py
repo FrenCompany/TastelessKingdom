@@ -1,12 +1,17 @@
 from pygame.locals import *
 
 from src.platforms.Character import Character
+from src.model.Inventory import Inventory
+from src.model.Storage import Storage
 
 
 class Player:
     def __init__(self, driver, char: str = 'bunny'):
         self.driver = driver
-        self.char = Character(char, x=400, y=300)
+        self.char = Character(self, char=char, x=400, y=300)
+
+        self.inventory = Inventory()
+        self.storage = Storage()
 
     def actions(self, events, pressed):
         # controles presionados
@@ -36,4 +41,12 @@ class Player:
                     self.driver.press_secondary(self)
                 if event.key == K_ESCAPE:
                     self.driver.press_start(self)
+        return
+
+    def add_item_to_inventory(self, item):
+        self.inventory.add_item(item)
+        return
+
+    def add_item_to_storage(self, item):
+        self.storage.add_item(item)
         return

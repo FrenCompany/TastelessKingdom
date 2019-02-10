@@ -14,8 +14,9 @@ class Character(pygame.sprite.Sprite):
     LEFT = 0
     RIGHT = 1
 
-    def __init__(self, char: str, x=0, y=0, g=CHAR_GRAVITY, jumpspeed=CHAR_JUMPSPEED):
+    def __init__(self, player, char: str, x=0, y=0, g=CHAR_GRAVITY, jumpspeed=CHAR_JUMPSPEED):
         super().__init__()
+        self.player = player
 
         # imagen a mostrar cada vez que se llama draw()
         self.direction = self.LEFT
@@ -190,7 +191,9 @@ class Character(pygame.sprite.Sprite):
         return
 
     def get_collectible(self, collectible):
-        # TODO: obtener objetos
+        self.player.add_item_to_storage(collectible.ingredient)
+
+        # TODO: cosas graficas aparte
         collectible.kill()
         self.animations.add(AnimatedItem(collectible, destination=(750, 10)))
         return

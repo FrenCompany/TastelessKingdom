@@ -3,6 +3,7 @@ from typing import Tuple
 import pygame
 
 from settings.GUI import BLOCK_COLOR, PLATFORM_COLOR, DOOR_COLOR
+from src.platforms.Door import Door
 
 
 class Block(pygame.sprite.Sprite):
@@ -74,21 +75,16 @@ class Platform(Block):
         return Block.collide_top(self, moving_sprite)
 
 
-class Door(Block):
+class AutomaticDoor(Block, Door):
 
     def __init__(self, driver, width, height, x, y, color=DOOR_COLOR,
                  next_level: str = '', entering_pos: Tuple[int, int] = (0, 0)):
-        super().__init__(width, height, x, y, color)
+        Block.__init__(self, width, height, x, y, color)
+        Door.__init__(self, driver, next_level, entering_pos)
 
         self.driver = driver
         self.next_level = next_level
         self.entering_pos = entering_pos
-
-    def enter_room(self, player):
-        from src.platforms.Room import load_room
-        self.driver.state.level = load_room(f'static/maps/{self.next_level}.json', self.driver)
-        player.char.move_to(*self.entering_pos)
-        return
 
     def collide_left(self, moving_sprite):
         self.enter_room(self.driver.player)

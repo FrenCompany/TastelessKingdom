@@ -142,8 +142,7 @@ class InGame(GameState):
         level.detect_collisions(char)
 
         # dibujar
-        level.draw(self.driver.screen)
-        char.draw(self.driver.screen)
+        level.draw(self.driver.screen, char)
         pass
 
     def press_up(self, player: Player):
@@ -194,7 +193,7 @@ class Paused(MenuState):
         self.background.set_alpha(150)
 
     def tick(self, events):
-        self.prev_state.level.draw(self.driver.screen)
+        self.prev_state.level.draw(self.driver.screen, self.driver.player.char)
         self.driver.screen.blit(self.background, (0, 0))
         self.menu.draw(self.driver.screen)
         return

@@ -29,7 +29,7 @@
 
   "backdoors": [
     {
-      "width": 80, "height": 100, "x": 360, "y": 470, "next_level": "storage1", "entering_pos": [368, 490]
+      "width": 80, "height": 100, "x": 360, "y": 470, "next_level": "storage", "entering_pos": [368, 490]
     }
   ],
 

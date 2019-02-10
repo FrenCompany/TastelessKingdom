@@ -2,8 +2,8 @@ import json
 import pygame
 
 from settings.GUI import BACKGROUND_COLOR
-from src.platforms.Block import Block, Platform, Door
-from src.platforms.Interactable import Backdoor, InventoryItem
+from src.platforms.Block import Block, Platform, AutomaticDoor
+from src.platforms.Interactable import Backdoor
 from src.platforms.Cannon import Cannon
 from src.platforms.Collectible import Collectible
 from src.platforms.Group import CustomGroup
@@ -11,25 +11,14 @@ from src.platforms.Group import CustomGroup
 
 class Room:
 
-    def __init__(self, blocks=CustomGroup(), platforms=CustomGroup(), doors=CustomGroup(),
+    def __init__(self, name: str = '', blocks=CustomGroup(), platforms=CustomGroup(), doors=CustomGroup(),
                  cannons=CustomGroup(), collectibles=CustomGroup(), backdoors=CustomGroup()):
+        self.name = name
+
+        self.backdoors = backdoors
+        self.interactables = [backdoors]
 
         self.collectibles = collectibles
-        self.backdoors = backdoors
-
-        """
-        inventory = {
-            1: 2,
-            2: 4,
-            3: 1,
-        }
-        self.items = CustomGroup(
-            InventoryItem(200, 500, inventory, 1),
-            InventoryItem(300, 500, inventory, 2),
-            InventoryItem(400, 500, inventory, 3))
-        """
-
-        self.interactables = [backdoors]
 
         self.doors = doors
         self.blocks = blocks
@@ -57,7 +46,7 @@ class Room:
         char.detect_collectibles(self.collectibles)
         return
 
-    def draw(self, screen):
+    def draw(self, screen, char):
         screen.fill(BACKGROUND_COLOR)
 
         self.blocks.draw(screen)
@@ -73,6 +62,8 @@ class Room:
             objective.draw(screen)
 
         self.bullets.draw(screen)
+
+        char.draw(screen)
         return
 
     def primary_action(self, player):
@@ -92,8 +83,8 @@ class Room:
         return
 
 
-def load_room(level_json, driver):
-    with open(level_json) as f:
+def load_room(level_name, driver):
+    with open(f'static/maps/{level_name}.json') as f:
         level = json.load(f)
 
     blocks = CustomGroup()
@@ -106,7 +97,7 @@ def load_room(level_json, driver):
 
     doors = CustomGroup()
     for door in level["doors"]:
-        doors.add(Door(driver, **door))
+        doors.add(AutomaticDoor(driver, **door))
 
     backdoors = CustomGroup()
     for backdoor in level["backdoors"]:
@@ -121,4 +112,4 @@ def load_room(level_json, driver):
         collectibles.add(Collectible(**collectible))
 
     return Room(blocks=blocks, platforms=platforms, doors=doors, backdoors=backdoors, collectibles=collectibles,
-                cannons=cannons)
+                cannons=cannons, name=level_name)
