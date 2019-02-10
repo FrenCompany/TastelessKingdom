@@ -54,9 +54,3 @@ class Friend:
 
     def changeState(self,new):
         self.state=new
-
-class Play:
-    def __init__(self):
-        self.inventory = []
-    def addIngredient(self, ing):
-        self.inventory.append(ing)
