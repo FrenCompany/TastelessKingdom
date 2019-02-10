@@ -7,7 +7,6 @@ from typing import List
 
 class Chef:
     def __init__(self, player_deck, player_inventory, player_specialty, player_modifier, player_defense,
-                 cooldown,
                  max_morale,
                  citizens: List[Citizen]):
         self.deck = player_deck
@@ -15,7 +14,6 @@ class Chef:
         self.specialty = player_specialty
         self.modifier = player_modifier
         self.defense = player_defense
-        self.cooldown = cooldown
         self.max_morale = max_morale
         self.current_morale = max_morale
         self.citizens = citizens
