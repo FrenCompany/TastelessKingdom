@@ -28,3 +28,9 @@ class Chef:
 
     def can_cook(self, recipe: Recipe):
         self.inventory.can_cook(recipe)
+
+    def tick_buffs(self):
+        pass
+
+    def is_defeated(self):
+        return self.current_morale <= 0

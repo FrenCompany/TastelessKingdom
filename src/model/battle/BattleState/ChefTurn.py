@@ -2,6 +2,7 @@ from src.model.battle.BattleDriver import BattleDriver
 from src.model.battle.BattleState.BattleState import BattleState
 from src.model.battle.BattleState.CitizenTurn import CitizenTurn
 
+
 class ChefTurn(BattleState):
     def __init__(self, driver: BattleDriver):
         super(ChefTurn, self).__init__(driver)
