@@ -46,3 +46,36 @@ class AnimatedCharacter(AnimatedSprite):
         self.frame_counter = 14
         self.image_index = 0
         return self.images[self.image_index]
+
+
+class AnimatedItem(pygame.sprite.Sprite):
+
+    def __init__(self, item, destination, speed=8):
+        super().__init__()
+        self.item = item
+        self.destination = destination
+        self.speed = speed
+
+    def draw(self, screen):
+        self.animate()
+        self.item.draw(screen)
+        return
+
+    def animate(self):
+        pos = self.item.rect.topleft
+
+        x_diff = self.destination[0] - pos[0]
+        y_diff = self.destination[1] - pos[1]
+
+        dist = (x_diff ** 2 + y_diff ** 2) ** (1 / 2)
+        speed = min(self.speed, dist)
+
+        if dist == 0:
+            self.kill()
+            return
+
+        x_move = speed * x_diff / dist
+        y_move = speed * y_diff / dist
+
+        self.item.move(x_move, y_move)
+        return

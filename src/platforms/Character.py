@@ -6,7 +6,8 @@ from settings.Game import CHAR_GRAVITY, CHAR_SPEED, CHAR_JUMPSPEED, CHAR_JUMPTRI
 from src.platforms.Cannon import Bullet
 from src.platforms.Collectible import Collectible
 from src.platforms.Sound import play_jump
-from src.platforms.AnimatedSprite import AnimatedCharacter
+from src.platforms.Animation import AnimatedCharacter, AnimatedItem
+from src.platforms.Group import CustomGroup
 
 
 class Character(pygame.sprite.Sprite):
@@ -19,6 +20,9 @@ class Character(pygame.sprite.Sprite):
         # imagen a mostrar cada vez que se llama draw()
         self.direction = self.LEFT
         self.sprite = AnimatedCharacter(char)
+
+        # animaciones causadas por el personaje
+        self.animations = CustomGroup()
 
         # posición
         self.rect = self.sprite.get_image().get_rect().move(x, y)
@@ -36,12 +40,12 @@ class Character(pygame.sprite.Sprite):
 
     # ---------------- movimiento ---------------
 
-    def move(self, dx=0, dy=0):
-        self.rect.move_ip(dx, dy)
-        return
-
     def move_to(self, x=0, y=0):
         self.rect.topleft = (x, y)
+        return
+
+    def move(self, dx=0, dy=0):
+        self.rect.move_ip(dx, dy)
         return
 
     def move_right(self):
@@ -78,8 +82,9 @@ class Character(pygame.sprite.Sprite):
     # ---------------- dibujar ---------------
 
     def draw(self, screen):
-        image = self.sprite.get_image(moving=self.old_rect != self.rect, jumping=not self.standing)
+        self.animations.draw(screen)
 
+        image = self.sprite.get_image(moving=self.old_rect != self.rect, jumping=not self.standing)
         if self.direction == self.LEFT:
             image = pygame.transform.flip(image, True, False)
 
@@ -174,7 +179,7 @@ class Character(pygame.sprite.Sprite):
         # TODO: ataques en el juego
         return
 
-    # ---------------- objetivos ---------------
+    # ---------------- recolectables ---------------
 
     def detect_collectibles(self, group):
         collisions = pygame.sprite.spritecollide(self, group, dokill=False)
@@ -187,4 +192,5 @@ class Character(pygame.sprite.Sprite):
     def get_collectible(self, collectible):
         # TODO: obtener objetos?
         collectible.kill()
+        self.animations.add(AnimatedItem(collectible, destination=(750, 50)))
         return

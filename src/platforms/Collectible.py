@@ -16,3 +16,11 @@ class Collectible(pygame.sprite.Sprite):
     def draw(self, screen):
         screen.blit(self.image, self.rect)
         return
+
+    def move_to(self, x=0, y=0):
+        self.rect.topleft = (x, y)
+        return
+
+    def move(self, dx=0, dy=0):
+        self.rect.move_ip(dx, dy)
+        return
