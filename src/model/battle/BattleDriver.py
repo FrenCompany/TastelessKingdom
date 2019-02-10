@@ -9,7 +9,6 @@ from src.GUI.BattleGUI import BattleGUI
 
 class BattleDriver:
     def __init__(self, player, citizens: List[Citizen]):
-        # TODO: implement player class
         self.chef = Chef(player)
         self.citizens = citizens
         self.state = ChefTurn(self)
