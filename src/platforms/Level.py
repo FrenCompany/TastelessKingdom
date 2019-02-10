@@ -4,19 +4,21 @@ import pygame
 from settings.GUI import BACKGROUND_COLOR
 from src.platforms.Block import Block, Platform, Door, Backdoor
 from src.platforms.Cannon import Cannon
-from src.platforms.Coin import Coin
+from src.platforms.Collectible import Collectible
 from src.platforms.Group import CustomGroup
 
 
 class Level:
 
-    def __init__(self, blocks=CustomGroup(), platforms=CustomGroup(),
-                 cannons=CustomGroup(), coins=CustomGroup(), doors=CustomGroup(), backdoors=CustomGroup()):
+    def __init__(self, blocks=CustomGroup(), platforms=CustomGroup(), doors=CustomGroup(),
+                 cannons=CustomGroup(), collectibles=CustomGroup(), backdoors=CustomGroup()):
 
-        self.coins = coins
-        self.doors = doors
+        self.collectibles = collectibles
         self.backdoors = backdoors
 
+        self.interactables = [collectibles, backdoors]
+
+        self.doors = doors
         self.blocks = blocks
         self.platforms = platforms
 
@@ -39,7 +41,7 @@ class Level:
         self.blocks.detect_impacts(self.bullets)
         char.detect_impacts(self.bullets)
 
-        char.detect_objectives(self.coins)
+        char.detect_collectibles(self.collectibles)
         return
 
     def draw(self, screen):
@@ -52,16 +54,26 @@ class Level:
 
         self.cannons.draw(screen)
 
-        for objective in self.coins:
+        for objective in self.collectibles:
             objective.draw(screen)
 
         self.bullets.draw(screen)
         return
 
-    def enter_backdoor(self, player):
-        collisions = pygame.sprite.spritecollide(player.char, self.backdoors, dokill=False)
-        if len(collisions) > 0:
-            collisions[0].enter_door()
+    def primary_action(self, player):
+        for interactable in self.interactables:
+            collisions = pygame.sprite.spritecollide(player.char, interactable, dokill=False)
+            if len(collisions) > 0:
+                collisions[0].primary_action(player)
+                return
+        return
+
+    def secondary_action(self, player):
+        for interactable in self.interactables:
+            collisions = pygame.sprite.spritecollide(player.char, interactable, dokill=False)
+            if len(collisions) > 0:
+                collisions[0].secondary_action()
+                return
         return
 
 
@@ -89,8 +101,9 @@ def load_level(level_json, driver):
     for cannon in level["cannons"]:
         cannons.add(Cannon(**cannon))
 
-    coins = CustomGroup()
-    for coin in level["coins"]:
-        coins.add(Coin(**coin))
+    collectibles = CustomGroup()
+    for collectible in level["collectibles"]:
+        collectibles.add(Collectible(**collectible))
 
-    return Level(blocks=blocks, platforms=platforms, doors=doors, backdoors=backdoors, coins=coins, cannons=cannons)
+    return Level(blocks=blocks, platforms=platforms, doors=doors, backdoors=backdoors, collectibles=collectibles,
+                 cannons=cannons)

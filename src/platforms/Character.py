@@ -4,7 +4,7 @@ import pygame
 
 from settings.Game import CHAR_GRAVITY, CHAR_SPEED, CHAR_JUMPSPEED, CHAR_JUMPTRIES
 from src.platforms.Cannon import Bullet
-from src.platforms.Coin import Coin
+from src.platforms.Collectible import Collectible
 from src.platforms.Sound import play_jump
 from src.platforms.AnimatedSprite import AnimatedCharacter
 
@@ -153,7 +153,7 @@ class Character(pygame.sprite.Sprite):
 
     # ---------------- impactos (balas) ---------------
 
-    def circle_collide(self, sprite: Union[Coin, Bullet]):
+    def circle_collide(self, sprite: Union[Collectible, Bullet]):
         closest_x = min(self.rect.right, max(self.rect.left, sprite.rect.centerx))
         closest_y = min(self.rect.bottom, max(self.rect.top, sprite.rect.centery))
 
@@ -176,13 +176,15 @@ class Character(pygame.sprite.Sprite):
 
     # ---------------- objetivos ---------------
 
-    def detect_objectives(self, group):
+    def detect_collectibles(self, group):
         collisions = pygame.sprite.spritecollide(self, group, dokill=False)
 
         for sprite in collisions:
             if self.circle_collide(sprite):
-                self.get_objective(sprite)
+                self.get_collectible(sprite)
+        return
 
-    def get_objective(self, objective):
+    def get_collectible(self, collectible):
         # TODO: obtener objetos?
+        collectible.kill()
         return

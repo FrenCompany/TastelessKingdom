@@ -167,7 +167,11 @@ class InGame(GameState):
         return
 
     def press_primary(self, player: Player):
-        self.level.enter_backdoor(player)
+        self.level.primary_action(player)
+        return
+
+    def press_secondary(self, player: Player):
+        self.level.secondary_action(player)
         return
 
 

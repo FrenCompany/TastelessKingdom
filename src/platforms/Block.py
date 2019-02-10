@@ -84,30 +84,26 @@ class Door(Block):
         self.next_level = next_level
         self.entering_pos = entering_pos
 
-    def enter_door(self):
+    def enter_room(self, player):
         from src.platforms.Level import load_level
         self.driver.state.level = load_level(f'static/maps/{self.next_level}.json', self.driver)
-        self.driver.player.char.move_to(*self.entering_pos)
+        player.char.move_to(*self.entering_pos)
         return
 
     def collide_left(self, moving_sprite):
-        if super().collide_left(moving_sprite):
-            self.enter_door()
+        self.enter_room(self.driver.player)
         return
 
     def collide_right(self, moving_sprite):
-        if super().collide_right(moving_sprite):
-            self.enter_door()
+        self.enter_room(self.driver.player)
         return
 
     def collide_bottom(self, moving_sprite):
-        if super().collide_bottom(moving_sprite):
-            self.enter_door()
+        self.enter_room(self.driver.player)
         return
 
     def collide_top(self, moving_sprite):
-        if super().collide_top(moving_sprite):
-            self.enter_door()
+        self.enter_room(self.driver.player)
         return
 
 
@@ -116,6 +112,13 @@ class Backdoor(Door):
     def __init__(self, driver, width, height, x, y, color=DOOR_COLOR,
                  next_level: str = '', entering_pos: Tuple[int, int] = (0, 0)):
         super().__init__(driver, width, height, x, y, color, next_level, entering_pos)
+
+    def primary_action(self, player):
+        self.enter_room(player)
+        return
+
+    def secondary_action(self, player):
+        return
 
     def collide_left(self, moving_sprite):
         return False

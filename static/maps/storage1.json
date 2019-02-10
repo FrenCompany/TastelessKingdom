@@ -29,7 +29,7 @@
 
   "cannons": [],
 
-  "coins": [
+  "collectibles": [
     {
       "x": 225, "y": 250
     }, {

@@ -1,15 +1,15 @@
 import pygame
 
-from settings.GUI import COIN_SIZE
+from settings.GUI import COLLECTIBLE_SIZE
 from src.utils import path
 
 
-class Coin(pygame.sprite.Sprite):
+class Collectible(pygame.sprite.Sprite):
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, size=COLLECTIBLE_SIZE):
         super().__init__()
         self.image = pygame.image.load(path('static/img/FrenCoin.png'))
-        self.image = pygame.transform.smoothscale(self.image, (COIN_SIZE, COIN_SIZE))
+        self.image = pygame.transform.smoothscale(self.image, size)
 
         self.rect = self.image.get_rect().move((x, y))
 

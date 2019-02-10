@@ -23,7 +23,7 @@
 
   "doors": [
     {
-      "width": 10, "height": 70, "x": -40, "y": 500, "next_level": "room1", "entering_pos": [790, 490]
+      "width": 0, "height": 70, "x": -60, "y": 500, "next_level": "room1", "entering_pos": [790, 490]
     }
   ],
 
@@ -35,5 +35,5 @@
 
   "cannons": [],
 
-  "coins": []
+  "collectibles": []
 }

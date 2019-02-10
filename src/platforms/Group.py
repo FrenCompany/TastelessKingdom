@@ -22,8 +22,3 @@ class CustomGroup(pygame.sprite.Group):
             for sprite in self.sprites():
                 sprite.detect_impacts(group, dokill)
         return
-
-    def detect_objectives(self, *groups):
-        for group in groups:
-            for sprite in self.sprites():
-                sprite.detect_objectives(group)
