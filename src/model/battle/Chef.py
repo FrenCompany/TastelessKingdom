@@ -18,7 +18,7 @@ class Chef:
     def cook(self, recipe: Recipe):
         if self.can_cook(recipe):
             for ing in recipe.ingredient_list:
-                self.inventory.use_item(ing)
+                self.inventory.use_item(ing, recipe.ingredient_list[ing])
             return Dish(self, recipe.attributes, recipe.powers)
         else:
             raise Exception("Not enough ingredients")
@@ -27,7 +27,7 @@ class Chef:
         self.current_morale -= value
 
     def can_cook(self, recipe: Recipe):
-        self.inventory.can_cook(recipe)
+        return self.inventory.can_cook(recipe)
 
     def tick_buffs(self):
         pass
