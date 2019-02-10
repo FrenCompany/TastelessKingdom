@@ -27,7 +27,7 @@
 
   "doors": [
     {
-      "width": 0, "height": 70, "x": 860, "y": 500, "next_level": "room2", "entering_pos": [-60, 490]
+      "width": 0, "height": 600, "x": 860, "y": 0, "next_level": "room2", "entering_pos": [-60, 490]
     }
   ],
 
