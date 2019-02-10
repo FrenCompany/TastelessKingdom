@@ -5,15 +5,14 @@ from src.model.battle.Dish import Dish
 
 
 class Chef:
-    def __init__(self, player_deck, player_inventory, player_specialty, player_modifier, player_defense,
-                 max_morale):
-        self.deck = player_deck
-        self.inventory = Inventory(player_inventory)
-        self.specialty = player_specialty
-        self.modifier = player_modifier
-        self.defense = player_defense
-        self.max_morale = max_morale
-        self.current_morale = max_morale
+    def __init__(self, player):
+        self.deck = player.deck
+        self.inventory = Inventory(player.inventory)
+        self.specialty = player.specialty
+        self.modifier = player.modifier
+        self.defense = player.defense
+        self.max_morale = player.max_morale
+        self.current_morale = player.max_morale
 
     def cook(self, recipe: Recipe):
         if self.can_cook(recipe):
