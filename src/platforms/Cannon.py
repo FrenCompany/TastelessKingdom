@@ -4,8 +4,8 @@ import pygame
 
 from settings.GUI import CANNON_SIZE
 from settings.Game import BULLET_DAMAGE, BULLET_FRECUENCY, BULLET_RADIUS
-from src.elements.Block import Block
-from src.elements.Sound import play_fire
+from src.platforms.Block import Block
+from src.platforms.Sound import play_fire
 from src.utils import path
 
 

@@ -1,6 +1,6 @@
 from pygame.locals import *
 
-from src.elements.Character import Character
+from src.platforms.Character import Character
 from src.utils import path
 
 

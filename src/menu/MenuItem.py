@@ -2,7 +2,7 @@ import pygame
 
 from settings.GUI import BUTTON_MARGIN, BUTTON_PADDING, BUTTON_TEXT_COLOR, BUTTON_HOVER_COLOR, BUTTON_COLOR, \
     BUTTON_WIDTH, TEXT_MARGIN
-from src.elements.Text import Text
+from src.platforms.Text import Text
 
 
 class MenuItem:

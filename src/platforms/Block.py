@@ -1,6 +1,8 @@
 import pygame
 
-from settings.GUI import BLOCK_COLOR, PLATFORM_COLOR
+from typing import Tuple
+
+from settings.GUI import BLOCK_COLOR, PLATFORM_COLOR, DOOR_COLOR
 
 
 class Block(pygame.sprite.Sprite):
@@ -73,3 +75,40 @@ class Platform(Block):
         if moving_sprite.falling:
             return False
         return Block.collide_top(self, moving_sprite)
+
+
+class Door(Block):
+
+    def __init__(self, driver, width, height, x, y, color=DOOR_COLOR,
+                 next_level: str = '', entering_pos: Tuple[int, int] = (0, 0)):
+        super().__init__(width, height, x, y, color)
+
+        self.driver = driver
+        self.next_level = next_level
+        self.entering_pos = entering_pos
+
+    def enter_door(self):
+        from src.platforms.Level import load_level
+        self.driver.state.level = load_level(f'static/maps/{self.next_level}.json', self.driver)
+        self.driver.player.char.move_to(*self.entering_pos)
+        return
+
+    def collide_left(self, moving_sprite):
+        if super().collide_left(moving_sprite):
+            self.enter_door()
+        return
+
+    def collide_right(self, moving_sprite):
+        if super().collide_right(moving_sprite):
+            self.enter_door()
+        return
+
+    def collide_bottom(self, moving_sprite):
+        if super().collide_bottom(moving_sprite):
+            self.enter_door()
+        return
+
+    def collide_top(self, moving_sprite):
+        if super().collide_top(moving_sprite):
+            self.enter_door()
+        return

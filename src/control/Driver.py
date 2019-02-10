@@ -3,8 +3,9 @@ import pygame
 from settings.Game import FPS
 from src.control.GameState import GameState, InMainMenu, InGame, InStartScreen, Paused
 from src.control.Player import Player
-from src.elements.Level import load_level2
-from static.maps.level1 import level1
+from src.platforms.Level import load_level
+
+from src.utils import path
 
 
 class Driver:
@@ -95,8 +96,8 @@ class Driver:
         return
 
     def start_game(self):
-        levels = [load_level2(level1), ]
-        self.set_state(InGame(self, levels))
+        level = load_level(path('static/maps/level1.json'), self)
+        self.set_state(InGame(self, level))
         return
 
     def pause(self, prev_state):

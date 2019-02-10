@@ -2,11 +2,11 @@ from typing import Union
 
 import pygame
 
-from settings.GUI import CHAR_SIZE, CHAR_COIN_SIZE
-from settings.Game import CHAR_LIFE, CHAR_GRAVITY, CHAR_SPEED, CHAR_JUMPSPEED, CHAR_JUMPTRIES
-from src.elements.Cannon import Bullet
-from src.elements.Coin import Coin
-from src.elements.Sound import play_coin, play_hit, play_jump
+from settings.GUI import CHAR_SIZE
+from settings.Game import CHAR_GRAVITY, CHAR_SPEED, CHAR_JUMPSPEED, CHAR_JUMPTRIES
+from src.platforms.Cannon import Bullet
+from src.platforms.Coin import Coin
+from src.platforms.Sound import play_jump
 
 
 class Character(pygame.sprite.Sprite):
@@ -27,18 +27,6 @@ class Character(pygame.sprite.Sprite):
         self.rect = self.image.get_rect().move(x, y)
         self.old_rect = self.rect.copy()
 
-        # vida
-        self.max_life = CHAR_LIFE
-        self.life = CHAR_LIFE
-
-        self.life_frame = pygame.Surface([CHAR_SIZE, 4])
-        self.life_frame.fill((255, 0, 0))
-        self.life_bar = pygame.Surface([CHAR_SIZE, 4])
-        self.life_bar.fill((0, 255, 0))
-
-        # objetivos
-        self.objectives = set()
-
         # saltos y gravedad
         self.g = g
         self.jumpspeed = jumpspeed
@@ -53,6 +41,10 @@ class Character(pygame.sprite.Sprite):
 
     def move(self, dx=0, dy=0):
         self.rect.move_ip(dx, dy)
+        return
+
+    def move_to(self, x=0, y=0):
+        self.rect.topleft = (x, y)
         return
 
     def move_right(self):
@@ -95,27 +87,7 @@ class Character(pygame.sprite.Sprite):
 
         screen.blit(image, self.rect)
 
-        self.draw_life(screen)
-        self.draw_objectives(screen)
-
         self.old_rect = self.rect.copy()
-        return
-
-    def draw_life(self, screen):
-        screen.blit(self.life_frame, self.rect.move(0, -10))
-        current_width = int(self.width * self.life / self.max_life)
-        screen.blit(pygame.transform.smoothscale(self.life_bar, (current_width, 4)),
-                    self.rect.move(0, -10))
-        return
-
-    def draw_objectives(self, screen):
-        if len(self.objectives) > 0:
-            img = list(self.objectives)[0].image.copy()
-            img = pygame.transform.smoothscale(img, (CHAR_COIN_SIZE, CHAR_COIN_SIZE))
-
-            for i in range(len(self.objectives)):
-                screen.blit(img, self.rect.move(2, 2 + 12 * i).topright)
-
         self.falling = False
         return
 
@@ -201,11 +173,7 @@ class Character(pygame.sprite.Sprite):
         return
 
     def impact(self, bullet: Bullet):
-        bullet.impact(self)
-        play_hit()
-
-        if self.life <= 0:
-            self.kill()
+        # TODO: ataques en el juego
         return
 
     # ---------------- objetivos ---------------
@@ -218,11 +186,5 @@ class Character(pygame.sprite.Sprite):
                 self.get_objective(sprite)
 
     def get_objective(self, objective):
-        if objective not in self.objectives:
-            self.objectives.add(objective)
-            play_coin()
-        return
-
-    def clear_objectives(self):
-        self.objectives.clear()
+        # TODO: obtener objetos?
         return

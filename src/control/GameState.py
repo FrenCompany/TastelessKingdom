@@ -1,10 +1,8 @@
-from typing import List
-
 from pygame.locals import *
 
 from settings.GUI import TITLE_COLOR, SUBTITLE_COLOR, MENU_BACKGROUND
 from src.control.Player import Player
-from src.elements.Level import Level
+from src.platforms.Level import Level
 from src.menu.Menu import Menu
 from src.menu.MenuHandler import *
 from src.menu.MenuItem import Button, MenuText
@@ -124,17 +122,17 @@ class InMainMenu(MenuState):
 
 
 class InGame(GameState):
-    def __init__(self, driver, levels: List[Level]):
+    def __init__(self, driver, level: Level):
         super().__init__(driver)
 
-        self.levels: List[Level] = levels
-        self.level_num = 0
-
+        self.level: Level = level
         self.char = self.driver.player.char
+        self.char.move_to(100, 100)
+        self.char.vy = 0
 
     def tick(self, events):
         char = self.char
-        level = self.levels[self.level_num]
+        level = self.level
 
         # mov automático
         char.update()
@@ -192,7 +190,7 @@ class Paused(MenuState):
         self.background.set_alpha(150)
 
     def tick(self, events):
-        self.prev_state.levels[self.prev_state.level_num].draw(self.driver.screen)
+        self.prev_state.level.draw(self.driver.screen)
         self.driver.screen.blit(self.background, (0, 0))
         self.menu.draw(self.driver.screen)
         return
