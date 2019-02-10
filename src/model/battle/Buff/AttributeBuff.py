@@ -1,6 +1,5 @@
-
 from .Buff import Buff
-from ..Attributes import Attributes
+
 
 class AttributeBuff(Buff):
     def __init__(self, cooldown, buff_dict):

@@ -1,5 +1,6 @@
 from .Attributes import *
 
+
 class Multipliers:
 
     def __init__(self, mult_dict):
