@@ -44,7 +44,7 @@ class Backdoor(Door, Interactable):
         return False
 
 
-class InventoryItem(Collectible):
+class InventoryItem(Collectible, Interactable):
 
     def __init__(self, x, y, inventory, itemenum):
         super().__init__(x, y)

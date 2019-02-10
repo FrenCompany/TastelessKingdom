@@ -17,6 +17,7 @@ class Room:
         self.collectibles = collectibles
         self.backdoors = backdoors
 
+        """
         inventory = {
             1: 2,
             2: 4,
@@ -26,8 +27,9 @@ class Room:
             InventoryItem(200, 500, inventory, 1),
             InventoryItem(300, 500, inventory, 2),
             InventoryItem(400, 500, inventory, 3))
+        """
 
-        self.interactables = [backdoors, self.items]
+        self.interactables = [backdoors]
 
         self.doors = doors
         self.blocks = blocks
@@ -63,7 +65,7 @@ class Room:
         self.doors.draw(screen)
         self.backdoors.draw(screen)
 
-        self.items.draw(screen)
+        # self.items.draw(screen)
 
         self.cannons.draw(screen)
 

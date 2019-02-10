@@ -190,7 +190,7 @@ class Character(pygame.sprite.Sprite):
         return
 
     def get_collectible(self, collectible):
-        # TODO: obtener objetos?
+        # TODO: obtener objetos
         collectible.kill()
-        self.animations.add(AnimatedItem(collectible, destination=(750, 50)))
+        self.animations.add(AnimatedItem(collectible, destination=(750, 10)))
         return
