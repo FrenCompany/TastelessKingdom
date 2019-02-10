@@ -1,8 +1,7 @@
 # Player
+from .Recipe import Recipe
 from .Inventory import *
-from .Citizen import Citizen
 from .Dish import Dish
-from typing import List
 
 
 class Chef:
@@ -16,8 +15,8 @@ class Chef:
         self.max_morale = max_morale
         self.current_morale = max_morale
 
-    def cook(self, recipe):
-        if self.inventory.can_cook(recipe):
+    def cook(self, recipe: Recipe):
+        if self.can_cook(recipe):
             for ing in recipe.ingredient_list:
                 self.inventory.use_item(ing)
             return Dish(self, recipe.attributes, recipe.powers)
@@ -26,3 +25,6 @@ class Chef:
 
     def lower_morale(self, value):
         self.current_morale -= value
+
+    def can_cook(self, recipe: Recipe):
+        self.inventory.can_cook(recipe)

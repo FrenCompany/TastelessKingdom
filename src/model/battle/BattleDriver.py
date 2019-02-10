@@ -2,6 +2,7 @@ from typing import List
 from .Citizen import Citizen
 from .Chef import Chef
 from .BattleState.ChefTurn import ChefTurn
+from .Recipe import Recipe
 
 
 class BattleDriver:
@@ -15,7 +16,15 @@ class BattleDriver:
     def set_state(self, state):
         self.state = state
 
-    def recipe_chosen(self, recipe):
-        dish = self.chef.cook(recipe)
-        for citizen in self.citizens:
-            citizen.eat(dish)
+    def recipe_chosen(self, recipe: Recipe):
+        if self.chef.can_cook(recipe):
+            dish = self.chef.cook(recipe)
+            for citizen in self.citizens:
+                citizen.eat(dish)
+            self.state.end_turn()
+
+    def get_recipe(self, index):
+        return self.chef.deck[index]
+
+    def deck_size(self):
+        return len(self.chef.deck)
