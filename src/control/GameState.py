@@ -91,7 +91,7 @@ class MenuState(GameState):
 class InStartScreen(MenuState):
     def __init__(self, driver):
         items = [
-            MenuText(text="FrenCoins", size=120, color=TITLE_COLOR),
+            MenuText(text="Tasteless Kingdom", size=80, color=TITLE_COLOR),
             MenuText(text="Press Z to start", size=40),
         ]
         super().__init__(driver, Menu(driver, items))
@@ -109,7 +109,7 @@ class InStartScreen(MenuState):
 class InMainMenu(MenuState):
     def __init__(self, driver):
         items = [
-            MenuText(text="FrenCoins", size=100, color=TITLE_COLOR),
+            MenuText(text="Tasteless Kingdom", size=80, color=TITLE_COLOR),
             Button(handler=StartGame(driver), text="Start Game"),
             Button(handler=MainMenuHandler(driver), text="Instructions"),
             Button(handler=QuitGame(driver), text="Exit", color=(170, 0, 0), hover_color=(220, 0, 0)),

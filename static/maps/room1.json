@@ -1,6 +1,4 @@
 {
-  "duration": 30,
-
   "blocks": [
     {
       "width": 30, "height": 600, "x": 0, "y": 0
@@ -29,22 +27,13 @@
 
   "doors": [
     {
-      "width": 10, "height": 70, "x": 840, "y": 500, "next_level": "level2", "entering_pos": [-30, 530]
+      "width": 10, "height": 70, "x": 840, "y": 500, "next_level": "room2", "entering_pos": [-30, 530]
     }
   ],
 
-  "backdoors": [
-    {
-      "width": 50, "height": 70, "x": 400, "y": 500, "next_level": "level2", "entering_pos": [405, 530]
-    }
-  ],
+  "backdoors": [],
 
-  "cannons": [
-  ],
+  "cannons": [],
 
-  "coins": [
-    {
-      "x": 50, "y": 100
-    }
-  ]
+  "coins": []
 }
