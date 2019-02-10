@@ -1,6 +1,6 @@
 from typing import List
-from .Attributes import Attributes
-from .Buff.Buff import Buff
+from src.model.battle.Attributes import Attributes
+from src.model.battle.Buff.Buff import Buff
 
 
 class Recipe:

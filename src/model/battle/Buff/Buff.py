@@ -1,13 +1,11 @@
 from abc import ABC, abstractmethod
-from ..Citizen import Citizen
-
 
 class Buff(ABC):
     def __init__(self, cooldown):
         self.cooldown = cooldown
-        self.parent: Citizen = None
+        self.parent = None
 
-    def set_parent(self, parent: Citizen):
+    def set_parent(self, parent):
         self.parent = parent
 
     def buff_multipliers(self, multipliers):

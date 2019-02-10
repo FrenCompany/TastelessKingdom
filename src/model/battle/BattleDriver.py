@@ -1,8 +1,8 @@
 from typing import List
-from .Citizen import Citizen
-from .Chef import Chef
-from .BattleState.ChefTurn import ChefTurn
-from .Recipe import Recipe
+from src.model.battle.Citizen import Citizen
+from src.model.battle.Chef import Chef
+from src.model.battle.BattleState.ChefTurn import ChefTurn
+from src.model.battle.Recipe import Recipe
 
 
 class BattleDriver:

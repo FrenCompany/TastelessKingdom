@@ -1,7 +1,7 @@
 # Player
-from .Recipe import Recipe
-from .Inventory import *
-from .Dish import Dish
+from src.model.battle.Recipe import Recipe
+from src.model.battle.Inventory import *
+from src.model.battle.Dish import Dish
 
 
 class Chef:

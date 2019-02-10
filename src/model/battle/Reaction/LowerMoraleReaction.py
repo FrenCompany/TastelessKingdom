@@ -1,5 +1,5 @@
-from ..Chef import Chef
-from .Reaction import Reaction
+from src.model.battle.Chef import Chef
+from src.model.battle.Reaction.Reaction import Reaction
 
 
 class LowerMoraleReaction(Reaction):

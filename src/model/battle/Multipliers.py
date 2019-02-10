@@ -1,4 +1,4 @@
-from .Attributes import *
+from src.model.battle.Attributes import Attributes
 
 
 class Multipliers:
@@ -10,7 +10,10 @@ class Multipliers:
         hp = 0
         for name, member in Attributes.__members__.items():
             try:
-                hp += self.mult[name] * getattr(dish, name)
+                if member.value in self.mult:
+                    hp += self.mult[member.value] * dish.attributes[member.value]
+                else:
+                    hp += dish.attributes[member.value]
             except:
                 pass
         return hp

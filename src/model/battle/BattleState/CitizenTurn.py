@@ -1,5 +1,5 @@
-from .BattleState import BattleState
-from ..BattleDriver import BattleDriver
+from src.model.battle.BattleState.BattleState import BattleState
+from src.model.battle.BattleDriver import BattleDriver
 
 class CitizenTurn(BattleState):
     def __init__(self, driver: BattleDriver):

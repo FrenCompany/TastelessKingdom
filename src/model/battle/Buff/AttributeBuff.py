@@ -1,4 +1,4 @@
-from .Buff import Buff
+from src.model.battle.Buff.Buff import Buff
 
 
 class AttributeBuff(Buff):

@@ -1,17 +1,23 @@
-from .Dish import Dish
-from .Buff.Buff import Buff
+from src.model.battle.Dish import Dish
+from src.model.battle.Buff.Buff import Buff
 from typing import List
 from Lib.copy import deepcopy
+from src.model.battle.Reaction.Reaction import Reaction
+from src.model.battle.Multipliers import Multipliers
 
 
 class Citizen:
-    def __init__(self, time, loose_hp_every, multipliers, reactions, buffs: List[Buff]=list()):
+    def __init__(self, max_hp, time, lose_hp_every, multipliers=Multipliers({}), reactions: List[Reaction]=list(), buffs: List[Buff]=list()):
+        self.max_hp = max_hp
         self.hp = 0
         self.time = time
-        self.loose_hp_every = loose_hp_every
+        self.lose_hp_every = lose_hp_every
         self.multipliers = multipliers
         self.reactions = reactions
         self.buffs = buffs
+
+    def is_saved(self):
+        return self.hp >= self.max_hp
 
     def eat(self, dish: Dish):
         multipliers_copy = deepcopy(self.multipliers)

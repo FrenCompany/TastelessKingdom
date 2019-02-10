@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ..BattleDriver import BattleDriver
+from src.model.battle.BattleDriver import BattleDriver
 
 class BattleState(ABC):
     def __init__(self, driver: BattleDriver):
