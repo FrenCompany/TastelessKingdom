@@ -1,7 +1,7 @@
 from src.model.battle.Dish import Dish
 from src.model.battle.Buff.Buff import Buff
 from typing import List
-from Lib.copy import deepcopy
+from copy import deepcopy
 from src.model.battle.Reaction.Reaction import Reaction
 from src.model.battle.Multipliers import Multipliers
 
