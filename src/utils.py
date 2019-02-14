@@ -29,7 +29,7 @@ def init_screen():
     hide_moude()
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    pygame.display.set_caption("FrenCoins")
+    pygame.display.set_caption("Tasteless Kingdom")
     pygame.display.set_icon(pygame.image.load(path('static/img/favicon.png')))
 
     return screen
