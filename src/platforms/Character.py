@@ -70,12 +70,16 @@ class Character(pygame.sprite.Sprite):
     def update(self):
         if self.standing and self.jumptries > 0:
             self.vy = -self.jumpspeed
-            self.standing = False
             self.jumptries = 0
             play_jump()
 
         self.jumptries = max(self.jumptries - 1, 0)
-        self.vy += self.g
+
+        # corrección para gravedad menor a 0
+        if self.vy == 0:
+            self.vy += max(1, self.g)
+        else:
+            self.vy += self.g
         self.rect.y += self.vy
         self.standing = False
         return
