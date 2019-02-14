@@ -5,7 +5,6 @@ import pygame
 from settings.Game import CHAR_GRAVITY, CHAR_SPEED, CHAR_JUMPSPEED, CHAR_JUMPTRIES
 from src.platforms.Cannon import Bullet
 from src.platforms.Collectible import Collectible
-from src.platforms.Sound import play_jump
 from src.platforms.Animation import AnimatedCharacter, AnimatedItem
 from src.platforms.Group import CustomGroup
 
@@ -71,7 +70,6 @@ class Character(pygame.sprite.Sprite):
         if self.standing and self.jumptries > 0:
             self.vy = -self.jumpspeed
             self.jumptries = 0
-            play_jump()
 
         self.jumptries = max(self.jumptries - 1, 0)
 

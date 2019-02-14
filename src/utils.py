@@ -18,7 +18,7 @@ def center_screen():
 
 
 def hide_moude():
-    pygame.mouse.set_cursor((8, 8), (0, 0), [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0])
+    pygame.mouse.set_visible(False)
     return
 
 

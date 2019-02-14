@@ -4,7 +4,7 @@ from typing import Tuple
 import pygame
 
 from settings.GUI import DOOR_COLOR
-from src.platforms.Block import Door
+from src.platforms.Door import Door
 from src.platforms.Collectible import Collectible
 from src.platforms.Text import Text
 

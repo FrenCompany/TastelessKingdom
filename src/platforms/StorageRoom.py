@@ -1,6 +1,6 @@
 import json
 
-from settings.GUI import BACKGROUND_COLOR, COLLECTIBLE_SIZE
+from settings.GUI import COLLECTIBLE_SIZE
 from src.platforms.Block import Block, Platform
 from src.platforms.Interactable import Backdoor, InventoryItem
 from src.platforms.Group import CustomGroup
