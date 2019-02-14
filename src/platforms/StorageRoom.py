@@ -50,7 +50,8 @@ def load_storage_room(prev_level, driver):
         platforms.add(Platform(**platform))
         item_spaces.append(platform)
 
-    backdoors = CustomGroup(Backdoor(driver, **level["backdoor"], next_room=prev_level))
+    backdoors = CustomGroup(Backdoor(driver, **level["backdoor"],
+                                     next_room=prev_level, entering_pos=driver.player.char.rect.topleft))
 
     items = CustomGroup()
 

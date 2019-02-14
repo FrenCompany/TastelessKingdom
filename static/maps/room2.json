@@ -13,11 +13,13 @@
 
   "platforms": [
     {
-      "width": 200, "height": 5, "x": 115, "y": 300
+      "width": 127, "height": 0, "x": 470, "y": 480
     }, {
-      "width": 200, "height": 5, "x": 485, "y": 300
+      "width": 144, "height": 0, "x": 278, "y": 416
     }, {
-      "width": 300, "height": 20, "x": 250, "y": 435
+      "width": 288, "height": 0, "x": 48, "y": 332
+    }, {
+      "width": 440, "height": 0, "x": 170, "y": 268
     }
   ],
 
@@ -29,7 +31,7 @@
 
   "backdoors": [
     {
-      "width": 80, "height": 100, "x": 360, "y": 470, "next_room": "storage", "entering_pos": [368, 490]
+      "width": 60, "height": 100, "x": 620, "y": 452, "next_room": "storage", "entering_pos": [368, 490]
     }
   ],
 

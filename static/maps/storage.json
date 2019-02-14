@@ -22,7 +22,7 @@
   ],
 
   "backdoor": {
-    "width": 80, "height": 100, "x": 360, "y": 470, "entering_pos": [368, 490]
+    "width": 80, "height": 100, "x": 360, "y": 470
   }
 
 }
