@@ -13,21 +13,21 @@
 
   "platforms": [
     {
-      "width": 60, "height": 1, "x": 572, "y": 518
+      "width": 40, "height": 0, "x": 582, "y": 518
     }, {
-      "width": 30, "height": 1, "x": 613, "y": 459
+      "width": 10, "height": 0, "x": 623, "y": 450
     }, {
-      "width": 75, "height": 1, "x": 552, "y": 381
+      "width": 55, "height": 0, "x": 562, "y": 381
     }, {
-      "width": 90, "height": 1, "x": 350, "y": 361
+      "width": 70, "height": 0, "x": 360, "y": 361
     }, {
-      "width": 95, "height": 1, "x": 510, "y": 272
+      "width": 75, "height": 0, "x": 520, "y": 274
     }, {
-      "width": 50, "height": 1, "x": 303, "y": 271
+      "width": 30, "height": 0, "x": 313, "y": 271
     }, {
-      "width": 90, "height": 1, "x": 462, "y": 193
+      "width": 70, "height": 0, "x": 472, "y": 193
     }, {
-      "width": 40, "height": 1, "x": 342, "y": 183
+      "width": 20, "height": 0, "x": 352, "y": 183
     }
   ],
 
@@ -37,32 +37,23 @@
     }
   ],
 
-  "backdoors": [
-  ],
+  "backdoors": [],
 
   "cannons": [],
 
   "collectibles": [
     {
-      "x": 225, "y": 250, "ingredient": "TOMATO"
+      "x": 562, "y": 331, "ingredient": "TOMATO"
     }, {
-      "x": 300, "y": 250, "ingredient": "TOMATO"
+      "x": 375, "y": 311, "ingredient": "LETTUCE"
     }, {
-      "x": 375, "y": 250, "ingredient": "TOMATO"
+      "x": 537, "y": 222, "ingredient": "TOMATO"
     }, {
-      "x": 450, "y": 250, "ingredient": "STRAWBERRY"
+      "x": 308, "y": 221, "ingredient": "STRAWBERRY"
     }, {
-      "x": 525, "y": 250, "ingredient": "STRAWBERRY"
+      "x": 487, "y": 143, "ingredient": "STRAWBERRY"
     }, {
-      "x": 225, "y": 385, "ingredient": "LETTUCE"
-    }, {
-      "x": 300, "y": 385, "ingredient": "LETTUCE"
-    }, {
-      "x": 375, "y": 385, "ingredient": "LETTUCE"
-    }, {
-      "x": 450, "y": 385, "ingredient": "LETTUCE"
-    }, {
-      "x": 525, "y": 385, "ingredient": "LETTUCE"
+      "x": 342, "y": 133, "ingredient": "LETTUCE"
     }
   ]
 }

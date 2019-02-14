@@ -127,8 +127,7 @@ class InGame(GameState):
 
         self.level: Room = level
         self.char = self.driver.player.char
-        self.char.move_to(380, 200)
-        self.char.vy = 0
+        self.char.move_to(x=50, y=490)
 
     def tick(self, events):
         char = self.char

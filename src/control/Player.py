@@ -8,7 +8,7 @@ from src.model.Storage import Storage
 class Player:
     def __init__(self, driver, char: str = 'bunny'):
         self.driver = driver
-        self.char = Character(self, char=char, x=400, y=300)
+        self.char = Character(self, char=char)
 
         self.inventory = Inventory()
         self.storage = Storage()
